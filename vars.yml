@@ -7,5 +7,19 @@
       ansible.builting.debug:
         msg: url in Task1 = {{url}}
     - name: Access url in Task2
-        ansible.builting.debug:
-          msg: url in Task2 = {{url}}
+      ansible.builting.debug:
+        msg: url in Task2 = {{url}}
+
+##you can declar variable on tasks, However the scope is only that task
+
+- name: Access url inventory
+  ansiable.builtin.debug:
+     msg: url = {{url}}
+- name: Demo on file variables
+  hosts: all
+  vars_files:
+    - sample-vars.yml
+  tasks:
+    - name:Access url
+      ansible.builtin.debug:
+        msg: url = {{url}}
